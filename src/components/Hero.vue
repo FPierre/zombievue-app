@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'hero',
   data () {
     return {
       x: 100
@@ -39,8 +39,8 @@ export default {
       // console.log('moveRight')
       this.x += 3
     },
-    fire () {
-      // console.log('fire')
+    attack () {
+      // console.log('attack')
     }
   }
 }

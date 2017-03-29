@@ -4,6 +4,7 @@
 
     <div class='street'>
       <hero></hero>
+      <undead direction='left'></undead>
     </div>
 
     <div class='floor'></div>
@@ -12,11 +13,21 @@
 
 <script>
 import Hero from './components/Hero'
+import Undead from './components/Undead'
 
 export default {
   name: 'app',
+  mounted () {
+    this.init()
+  },
+  methods: {
+    init () {
+
+    }
+  },
   components: {
-    Hero
+    Hero,
+    Undead
   }
 }
 </script>
