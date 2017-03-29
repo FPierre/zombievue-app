@@ -1,11 +1,17 @@
 <template>
-  <div class='hello-component'>
+  <div class='hero-component'>
+    <div id='hero' :style='{ marginLeft: `${x}px` }'></div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'hello',
+  data () {
+    return {
+      x: 100
+    }
+  },
   mounted () {
     window.addEventListener('keyup', this.action)
   },
@@ -24,9 +30,11 @@ export default {
     },
     moveLeft () {
       console.log('moveLeft')
+      this.x -= 4
     },
     moveRight () {
       console.log('moveRight')
+      this.x += 4
     },
     fire () {
       console.log('fire')
@@ -36,7 +44,7 @@ export default {
 </script>
 
 <style scoped>
-.hello-component {
+.hero-component #hero {
   width: 20px;
   height: 50px;
   background-color: red;
