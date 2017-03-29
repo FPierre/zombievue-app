@@ -13,31 +13,34 @@ export default {
     }
   },
   mounted () {
-    window.addEventListener('keyup', this.action)
+    window.addEventListener('keydown', this.action)
   },
   methods: {
     action (e) {
       // console.log(e)
 
       switch (e.code) {
-        case 'ArrowLeft': this.moveLeft()
+        case 'ArrowLeft':
+          this.moveLeft()
           break
-        case 'ArrowRight': this.moveRight()
+        case 'ArrowRight':
+          this.moveRight()
           break
-        case 'Space': this.fire()
+        case 'Space':
+          this.fire()
           break
       }
     },
     moveLeft () {
-      console.log('moveLeft')
-      this.x -= 4
+      // console.log('moveLeft')
+      this.x -= 3
     },
     moveRight () {
-      console.log('moveRight')
-      this.x += 4
+      // console.log('moveRight')
+      this.x += 3
     },
     fire () {
-      console.log('fire')
+      // console.log('fire')
     }
   }
 }
