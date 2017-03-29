@@ -4,7 +4,7 @@
 
     <div class='street'>
       <hero></hero>
-      <undead direction='left'></undead>
+      <undead v-for='direction in undeads' :direction='direction' :key='undead'></undead>
     </div>
 
     <div class='floor'></div>
@@ -17,12 +17,24 @@ import Undead from './components/Undead'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      undeads: []
+    }
+  },
   mounted () {
     this.init()
   },
   methods: {
     init () {
+      const directions = ['left', 'right']
 
+      setInterval(() => this.loop(directions), 100000)
+    },
+    loop (directions) {
+      // console.log('loop')
+      const direction = directions[Math.floor(Math.random() * 2)]
+      this.undeads.push({ direction: direction })
     }
   },
   components: {
