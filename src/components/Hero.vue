@@ -7,9 +7,9 @@
 <script>
 export default {
   name: 'hero',
-  data () {
-    return {
-      x: 100
+  computed () {
+    x () {
+      return store.state.x
     }
   },
   mounted () {
