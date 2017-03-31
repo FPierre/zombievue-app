@@ -1,23 +1,30 @@
 import player from '../../api/player'
 import * as types from '../mutation-types'
 
-// Initial state
 const state = {
+  connected: false,
   x: 100
 }
 
-// Getters
 const getters = {
   x: state => state.x
 }
 
-// Actions
-const actions = {}
-
-// Mutations
 const mutations = {
-  [types.MOVE] (state, { id }) {
-    // ...
+  [SOCKET_CONNECT]: (state) => {
+    state.connected = true
+  },
+  [SOCKET_DISCONNECT]: (state) => {
+    state.connected = false
+  },
+  [MOVE]: (state, xPosition) => {
+    state.x = xPosition
+  }
+}
+
+const actions = {
+  socket_move: ({ commit, state }, xPosition) => {
+    commit('MOVE', xPosition)
   }
 }
 
