@@ -3,9 +3,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'hero',
-<<<<<<< HEAD
   sockets: {
     moved: (xPosition) => {
       console.log(this)
@@ -15,10 +16,10 @@ export default {
       console.log('this.x: ', this.x)
     }
   },
-  computed () {
-    x () {
-      return store.state.x
-    }
+  computed: {
+    ...mapGetters({
+      x: 'x'
+    })
   },
   mounted () {
     window.addEventListener('keydown', this.action)
