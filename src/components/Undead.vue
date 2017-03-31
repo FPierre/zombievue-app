@@ -1,31 +1,36 @@
 <template>
-  <div class='undead-component'>
-    <div :style='{ marginLeft: `${x}px` }'></div>
-  </div>
+  <div class='undead-component' :style='{ marginLeft: `${x}px` }'></div>
 </template>
 
 <script>
+import bus from '../bus'
+
 export default {
-  props: ['direction'],
+  props: ['params'],
   data () {
     return {
-      x: this.direction === 'left' ? 800 : 0
+      x: this.params['direction'] === 'left' ? 800 : 0
     }
   },
   mounted () {
-    if (this.direction === 'left') {
-      this.moveLeft()
-    } else {
-      this.moveRight()
-    }
+    bus.$on('move', () => {
+      console.log('move')
+
+      // TODO: extract condition from loop
+      if (this.params['direction'] === 'left') {
+        this.moveLeft()
+      } else {
+        this.moveRight()
+      }
+    })
   },
   methods: {
     moveLeft () {
-      // console.log('moveLeft')
+      console.log('moveLeft')
       this.x -= 2
     },
     moveRight () {
-      // console.log('moveRight')
+      console.log('moveRight')
       this.x += 2
     },
     attack () {
@@ -37,6 +42,8 @@ export default {
 
 <style scoped>
 .undead-component {
+  position: absolute;
+  display: inline-block;
   width: 20px;
   height: 50px;
   background-color: green;

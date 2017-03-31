@@ -1,12 +1,19 @@
 <template>
-  <div class='hero-component'>
-    <div id='hero' :style='{ marginLeft: `${x}px` }'></div>
-  </div>
+  <div class='hero-component' :style='{ marginLeft: `${x}px` }'></div>
 </template>
 
 <script>
 export default {
   name: 'hero',
+  sockets: {
+    moved: (xPosition) => {
+      console.log(this)
+      console.log('xPosition: ', xPosition)
+      console.log('this.x: ', this.x)
+      this.x = xPosition
+      console.log('this.x: ', this.x)
+    }
+  },
   data () {
     return {
       x: 100
@@ -33,11 +40,14 @@ export default {
     },
     moveLeft () {
       // console.log('moveLeft')
-      this.x -= 3
+      const x = this.x + 3
+      this.$socket.emit('move', x)
     },
     moveRight () {
       // console.log('moveRight')
-      this.x += 3
+      const x = this.x - 3
+      console.log('moveRight: ', x)
+      this.$socket.emit('move', x)
     },
     attack () {
       // console.log('attack')
@@ -47,7 +57,9 @@ export default {
 </script>
 
 <style scoped>
-.hero-component #hero {
+.hero-component {
+  position: absolute;
+  display: inline-block;
   width: 20px;
   height: 50px;
   background-color: red;

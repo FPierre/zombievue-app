@@ -1,24 +1,38 @@
 <template>
   <div id='app'>
-    <div class='sky'></div>
+    Connected: {{ connected }}
+    <!-- <div class='sky'></div> -->
 
-    <div class='street'>
-      <hero></hero>
-      <undead v-for='direction in undeads' :direction='direction' :key='undead'></undead>
+    <div id='game'>
+      <div class='street'>
+        <hero></hero>
+        <undead v-for='params in undeads' :params='params' :key='params'></undead>
+      </div>
     </div>
 
-    <div class='floor'></div>
+    <!-- <div class='floor'></div> -->
   </div>
 </template>
 
 <script>
+import bus from './bus'
+
 import Hero from './components/Hero'
 import Undead from './components/Undead'
 
 export default {
   name: 'app',
+  sockets: {
+    connected: () => {
+      this.connected = true
+    },
+    hello: (val) => {
+      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
+    }
+  },
   data () {
     return {
+      connected: false,
       undeads: []
     }
   },
@@ -27,14 +41,28 @@ export default {
   },
   methods: {
     init () {
-      const directions = ['left', 'right']
+      this.$socket.emit('connect')
 
-      setInterval(() => this.loop(directions), 100000)
+      // const directions = ['left', 'right']
+
+      // setInterval(() => this.loop(directions), 300)
     },
+    // Main game loop
+    // Manage undeads actions only
     loop (directions) {
       // console.log('loop')
-      const direction = directions[Math.floor(Math.random() * 2)]
-      this.undeads.push({ direction: direction })
+
+      // 1 chance in 2
+      if (Math.floor(Math.random() * 2)) {
+        // 1 chance in 2
+        const direction = directions[Math.floor(Math.random() * 2)]
+
+        this.undeads.push({
+          direction: direction
+        })
+      }
+
+      bus.$emit('move')
     }
   },
   components: {
@@ -45,10 +73,10 @@ export default {
 </script>
 
 <style>
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 300px;
+#game {
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*height: 300px;*/
   width: 800px;
   border: 1px solid black;
 }
@@ -59,7 +87,11 @@ export default {
 }
 
 .street {
-  flex-grow: 2;
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  /*flex-wrap: wrap;*/
+  /*align-items: flex-end;*/
+  height: 200px;
 }
 
 .floor {
