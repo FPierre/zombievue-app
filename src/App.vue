@@ -15,6 +15,7 @@
       <div class='grass'></div>
       <div class='street'></div>
       <hero></hero>
+      <player v-for='params in players' :params='params' :key='params'></player>
       <undead v-for='params in undeads' :params='params' :key='params'></undead>
       <div class='street-stripe'></div>
       <div class='hill'></div>
@@ -26,6 +27,7 @@
 import { mapGetters } from 'vuex'
 
 import Hero from './components/Hero'
+import Player from './components/Player'
 import Undead from './components/Undead'
 
 export default {
@@ -44,6 +46,7 @@ export default {
   },
   components: {
     Hero,
+    Player,
     Undead
   }
 }

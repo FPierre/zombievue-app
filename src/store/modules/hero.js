@@ -12,10 +12,12 @@ const getters = {
 }
 
 const mutations = {
-  JOIN: (state, { players, player }) => {
-    console.log('JOIN ', players)
-    state.x = player.x
-    state.color = player.color
+  HERO_CREATED: (state, { hero, players, undeads }) => {
+    console.log('HERO_CREATED')
+    state.x = hero.x
+    state.color = hero.color
+    state.players = players
+    state.undeads = undeads
   },
   PLAYERS: (state, players) => {
     console.log('PLAYERS, ', players)
@@ -28,6 +30,11 @@ const mutations = {
 }
 
 const actions = {
+  // From server
+  socket_heroCreated: (context, { hero, players, undeads }) => {
+    console.log('socket_heroCreated', hero)
+    context.commit('HERO_CREATED', { hero, players, undeads })
+  },
   // From server
   socket_quit: (context, players) => {
     console.log('quit ', players)

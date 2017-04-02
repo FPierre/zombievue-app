@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 // import * as getters from './getters'
 import actions from './actions'
 import getters from './getters'
-import player from './modules/player'
+import hero from './modules/hero'
 // import undeads from './modules/undeads'
 
 Vue.use(Vuex)
@@ -22,10 +22,9 @@ const mutations = {
     console.log('SOCKET_CONNECT')
     state.connected = true
   },
-  JOIN: (state, { players, player, undeads }) => {
-    console.log('JOIN ', players)
+  PLAYER_CREATED: (state, players) => {
+    console.log('PLAYER_CREATED ', players)
     state.players = players
-    state.undeads = undeads
   },
   UNDEADS: (state, undeads) => {
     console.log('UNDEADS ', undeads)
@@ -39,7 +38,7 @@ export default new Vuex.Store({
   getters,
   mutations,
   modules: {
-    player
+    hero
     // undeads
   },
   strict: debug
