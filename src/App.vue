@@ -1,6 +1,7 @@
 <template>
   <div id='app'>
     Connected: {{ connected }}
+    Players: {{ players }}
     <!-- <div class='sky'></div> -->
 
     <div id='game'>
@@ -10,59 +11,30 @@
       </div>
     </div>
 
+    <button @click='join'>Join</button>
+
     <!-- <div class='floor'></div> -->
   </div>
 </template>
 
 <script>
-import bus from './bus'
+import { mapGetters } from 'vuex'
 
 import Hero from './components/Hero'
 import Undead from './components/Undead'
 
 export default {
   name: 'app',
-  sockets: {
-    connected: () => {
-      this.connected = true
-    },
-    hello: (val) => {
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
-    }
-  },
-  data () {
-    return {
-      connected: false,
-      undeads: []
-    }
-  },
-  mounted () {
-    this.init()
+  computed: {
+    ...mapGetters({
+      connected: 'connected',
+      players: 'players',
+      undeads: 'undeads'
+    })
   },
   methods: {
-    init () {
-      this.$socket.emit('connect')
-
-      // const directions = ['left', 'right']
-
-      // setInterval(() => this.loop(directions), 300)
-    },
-    // Main game loop
-    // Manage undeads actions only
-    loop (directions) {
-      // console.log('loop')
-
-      // 1 chance in 2
-      if (Math.floor(Math.random() * 2)) {
-        // 1 chance in 2
-        const direction = directions[Math.floor(Math.random() * 2)]
-
-        this.undeads.push({
-          direction: direction
-        })
-      }
-
-      bus.$emit('move')
+    join () {
+      this.$socket.emit('join')
     }
   },
   components: {
@@ -74,9 +46,6 @@ export default {
 
 <style>
 #game {
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*height: 300px;*/
   width: 800px;
   border: 1px solid black;
 }
@@ -87,10 +56,6 @@ export default {
 }
 
 .street {
-  /*display: flex;*/
-  /*flex-direction: row;*/
-  /*flex-wrap: wrap;*/
-  /*align-items: flex-end;*/
   height: 200px;
 }
 

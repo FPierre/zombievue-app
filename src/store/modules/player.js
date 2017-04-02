@@ -1,30 +1,42 @@
-import player from '../../api/player'
-import * as types from '../mutation-types'
+// import player from '../../api/player'
+// import * as types from '../mutation-types'
 
 const state = {
-  connected: false,
-  x: 100
+  x: 100,
+  color: null
 }
 
 const getters = {
-  x: state => state.x
+  x: state => state.x,
+  color: state => state.color
 }
 
 const mutations = {
-  [SOCKET_CONNECT]: (state) => {
-    state.connected = true
+  JOIN: (state, { players, player }) => {
+    console.log('JOIN ', players)
+    state.x = player.x
+    state.color = player.color
   },
-  [SOCKET_DISCONNECT]: (state) => {
-    state.connected = false
+  PLAYERS: (state, players) => {
+    console.log('PLAYERS, ', players)
+    // state.players = players
   },
-  [MOVE]: (state, xPosition) => {
+  MOVE: (state, xPosition) => {
+    console.log('MOVE')
     state.x = xPosition
   }
 }
 
 const actions = {
-  socket_move: ({ commit, state }, xPosition) => {
-    commit('MOVE', xPosition)
+  // From server
+  socket_quit: (context, players) => {
+    console.log('quit ', players)
+    context.commit('PLAYERS', players)
+  },
+  // From server
+  socket_move: (context, xPosition) => {
+    console.log('socket_move ', xPosition)
+    context.commit('MOVE', xPosition)
   }
 }
 

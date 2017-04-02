@@ -1,24 +1,15 @@
 <template>
-  <div class='hero-component' :style='{ marginLeft: `${x}px` }'></div>
+  <div class='hero-component' :style='{ marginLeft: `${x}px`, backgroundColor: color }'></div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'hero',
-  sockets: {
-    moved: (xPosition) => {
-      console.log(this)
-      console.log('xPosition: ', xPosition)
-      console.log('this.x: ', this.x)
-      this.x = xPosition
-      console.log('this.x: ', this.x)
-    }
-  },
   computed: {
     ...mapGetters({
-      x: 'x'
+      x: 'x',
+      color: 'color'
     })
   },
   mounted () {
@@ -26,33 +17,16 @@ export default {
   },
   methods: {
     action (e) {
-      // console.log(e)
-
       switch (e.code) {
         case 'ArrowLeft':
-          this.moveLeft()
+          this.$socket.emit('moveLeft', this.x)
           break
         case 'ArrowRight':
-          this.moveRight()
+          this.$socket.emit('moveRight', this.x)
           break
         case 'Space':
-          this.fire()
           break
       }
-    },
-    moveLeft () {
-      // console.log('moveLeft')
-      const x = this.x + 3
-      this.$socket.emit('move', x)
-    },
-    moveRight () {
-      // console.log('moveRight')
-      const x = this.x - 3
-      console.log('moveRight: ', x)
-      this.$socket.emit('move', x)
-    },
-    attack () {
-      // console.log('attack')
     }
   }
 }
@@ -64,6 +38,6 @@ export default {
   display: inline-block;
   width: 20px;
   height: 50px;
-  background-color: red;
+  /*background-color: red;*/
 }
 </style>
