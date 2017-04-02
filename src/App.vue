@@ -1,5 +1,7 @@
 <template>
   <div id='app'>
+    <h1>Zombie Vue</h1>
+
     <div class='controls'>
       Connected: {{ connected }}
       Players: {{ players }}
@@ -70,6 +72,24 @@ body {
   background: -ms-radial-gradient(center, ellipse cover,  rgba(209,228,234,1) 0%,rgba(186,228,244,1) 100%);
   background: radial-gradient(ellipse at center,  rgba(209,228,234,1) 0%,rgba(186,228,244,1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1e4ea', endColorstr='#bae4f4',GradientType=1 );*/
+}
+
+@font-face {
+  font-family: 'DeadFontWalking';
+  src: url('./assets/fonts/DeadFontWalking.eot');
+  src: url('./assets/fonts/DeadFontWalking.woff2') format('woff2'),
+       url('./assets/fonts/DeadFontWalking.ttf') format('truetype'),
+       url('./assets/fonts/DeadFontWalking.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font: {
+    size: 4em;
+    weight: normal;
+    family: 'DeadFontWalking', arial;
+  }
 }
 
 .country-wrap {

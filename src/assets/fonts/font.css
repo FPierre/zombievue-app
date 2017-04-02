@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'DeadFontWalking';
+  src: url('DeadFontWalking.eot');
+  src: url('DeadFontWalking.woff2') format('woff2'),
+       url('DeadFontWalking.woff') format('woff'),
+       url('DeadFontWalking.ttf') format('truetype'),
+       url('DeadFontWalking.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
