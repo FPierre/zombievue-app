@@ -4,22 +4,20 @@
 
     <div class='controls'>
       Connected: {{ connected }}
-      Players: {{ players }}
+      Survivors: {{ players.length }}
 
       <button @click='join'>Join</button>
     </div>
 
     <div id='game'>
-      <div class='country-wrap'>
-      	<div class='moon'></div>
-      	<div v-for='i in 10' class='star' :class='"twinkle-star-" + i'></div>
-      	<div class='grass'></div>
-      	<div class='street'></div>
-        <hero></hero>
-        <undead v-for='params in undeads' :params='params' :key='params'></undead>
-      	<div class='street-stripe'></div>
-      	<div class='hill'></div>
-      </div>
+      <div class='moon'></div>
+      <div v-for='i in 10' class='star' :class='"twinkle-star-" + i'></div>
+      <div class='grass'></div>
+      <div class='street'></div>
+      <hero></hero>
+      <undead v-for='params in undeads' :params='params' :key='params'></undead>
+      <div class='street-stripe'></div>
+      <div class='hill'></div>
     </div>
   </div>
 </template>
@@ -52,12 +50,6 @@ export default {
 </script>
 
 <style lang='scss'>
-#game {
-  width: 800px;
-  height: 400px;
-  border: 1px solid black;
-}
-
 body {
 	margin: 0;
 	padding: 0;
@@ -86,22 +78,45 @@ body {
 
 h1 {
   font: {
-    size: 4em;
+    size: 4.6em;
     weight: normal;
     family: 'DeadFontWalking', arial;
   }
+  text-align: center;
 }
 
-.country-wrap {
+.controls {
+  width: 240px;
+  margin: 0 auto;
+  font-size: 1.2em;
+
+  button {
+    padding: .5em 2em;
+    font-size: 1em;
+    color: #fff;
+    background: none;
+    border: 1px solid #fff;
+    border-radius: 1.4em;
+    outline: none;
+
+    &:active {
+      color: #111122;
+      background-color: #fff;
+    }
+  }
+}
+
+#game {
 	position: relative;
-	width: 100%;
-	height: 100%;
+  width: 800px;
+  height: 400px;
+  margin: 50px auto 0;
 	overflow: hidden;
 }
 
 .moon {
 	position: absolute;
-	bottom: 320px;
+	bottom: 330px;
 	left: 70%;
 	width: 40px;
 	height: 40px;
@@ -154,29 +169,29 @@ h1 {
 	width: 102%;
 	height: 80px;
 	box-shadow: 0 1px 16px rgba(111, 35, 51, 0.4) inset;
-}
 
-.street:after {
-	content:'';
-	display:block;
-	position:absolute;
-	width:100%;
-	height:10px;
-	background:#cdbcb4;
-	bottom:0;
-	border-bottom:3px solid #72625a;
-	z-index:1;
-}
+  &:before {
+  	content:'';
+  	display:block;
+  	position:absolute;
+  	width:100%;
+  	height:7px;
+  	background:#c2a99d;
+  	bottom:-7px;
+  	z-index:1;
+  }
 
-.street:before {
-	content:'';
-	display:block;
-	position:absolute;
-	width:100%;
-	height:7px;
-	background:#c2a99d;
-	bottom:-7px;
-	z-index:1;
+  &:after {
+  	content:'';
+  	display:block;
+  	position:absolute;
+  	width:100%;
+  	height:10px;
+  	background:#cdbcb4;
+  	bottom:0;
+  	border-bottom:3px solid #72625a;
+  	z-index:1;
+  }
 }
 
 .street-stripe {
@@ -195,16 +210,16 @@ h1 {
 	background-color: #dbcac2;
 	position:absolute;
 	bottom:60px;
-}
 
-.grass:before {
-  position: absolute;
-  content: '';
-	top: 14px;
-  left: 0;
-  height: 8px;
-  width: 100%;
-  background-color: #b99f93;
+  &:before {
+    position: absolute;
+    content: '';
+  	top: 14px;
+    left: 0;
+    height: 8px;
+    width: 100%;
+    background-color: #b99f93;
+  }
 }
 
 .hill {
@@ -217,33 +232,33 @@ h1 {
   border-top-left-radius: 100%;
   background-color: darken(#adde60, 30%);
   z-index:-1;
-}
 
-.hill:after {
-  content: '';
-	position: absolute;
-  bottom: -100px;
-  right: -400px;
-	width: 120%;
-  height: 110%;
-  border-top-right-radius: 100%;
-  border-top-left-radius: 0%;
-  background-color: darken(#94c943, 20%);
-  -moz-transform: rotate(-12deg);
-  -webkit-transform: rotate(-12deg);
-  box-shadow: 0 0 25px #cbf191 inset;
-}
+  &:before {
+    background-color: darken(#93cc3a, 22%);
+    border-top-left-radius: 0;
+    border-top-right-radius: 100%;
+    bottom: -70px;
+    content: "";
+    height: 110%;
+    left: -54px;
+    position: absolute;
+    transform: rotate(4deg);
+    width: 120%;
+  }
 
-.hill:before {
-  background-color: darken(#93cc3a, 22%);
-  border-top-left-radius: 0;
-  border-top-right-radius: 100%;
-  bottom: -70px;
-  content: "";
-  height: 110%;
-  left: -54px;
-  position: absolute;
-  transform: rotate(4deg);
-  width: 120%;
+  &:after {
+    content: '';
+  	position: absolute;
+    bottom: -100px;
+    right: -400px;
+  	width: 120%;
+    height: 110%;
+    border-top-right-radius: 100%;
+    border-top-left-radius: 0%;
+    background-color: darken(#94c943, 20%);
+    -moz-transform: rotate(-12deg);
+    -webkit-transform: rotate(-12deg);
+    box-shadow: 0 0 25px #cbf191 inset;
+  }
 }
 </style>
