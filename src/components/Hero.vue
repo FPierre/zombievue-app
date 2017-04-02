@@ -34,10 +34,10 @@ export default {
 
 <style scoped>
 .hero-component {
-  position: absolute;
-  display: inline-block;
+	position:absolute;
+	bottom: 45px;
   width: 20px;
   height: 50px;
-  /*background-color: red;*/
+  z-index: 9999;
 }
 </style>
