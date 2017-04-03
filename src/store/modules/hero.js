@@ -3,12 +3,14 @@
 
 const state = {
   id: null,
+  name: null,
   x: null,
   color: null
 }
 
 const getters = {
   id: state => state.id,
+  name: state => state.name,
   x: state => state.x,
   color: state => state.color
 }
@@ -17,6 +19,7 @@ const mutations = {
   HERO_CREATED: (state, { hero, players, undeads }) => {
     console.log('HERO_CREATED')
     state.id = hero.id
+    state.name = hero.name
     state.x = hero.x
     state.color = hero.color
 
