@@ -4,7 +4,7 @@
 
     <div class='controls'>
       Connected: {{ connected }}
-      Survivors: {{ players.length }}
+      Survivors: {{ players.length }}
 
       <button @click='join'>Join</button>
     </div>

@@ -19,13 +19,9 @@ const mutations = {
     state.players = players
     state.undeads = undeads
   },
-  PLAYERS: (state, players) => {
-    console.log('PLAYERS, ', players)
-    // state.players = players
-  },
-  MOVE: (state, xPosition) => {
-    console.log('MOVE')
-    state.x = xPosition
+  POSITION: (state, position) => {
+    console.log('POSITION')
+    state.x = position
   }
 }
 
@@ -36,14 +32,9 @@ const actions = {
     context.commit('HERO_CREATED', { hero, players, undeads })
   },
   // From server
-  socket_quit: (context, players) => {
-    console.log('quit ', players)
-    context.commit('PLAYERS', players)
-  },
-  // From server
-  socket_move: (context, xPosition) => {
-    console.log('socket_move ', xPosition)
-    context.commit('MOVE', xPosition)
+  socket_moved: (context, position) => {
+    console.log('socket_moved ', position)
+    context.commit('POSITION', position)
   }
 }
 

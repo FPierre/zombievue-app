@@ -1,7 +1,11 @@
 export default {
   socket_playerCreated: (context, players) => {
     console.log('socket_playerCreated ', players)
-    context.commit('PLAYER_CREATED', players)
+    context.commit('PLAYERS', players)
+  },
+  socket_playerMoved: (context, players) => {
+    console.log('socket_playerMoved ', players)
+    context.commit('PLAYERS', players)
   },
   socket_undeadCreated: (context, undeads) => {
     console.log('socket_undeadCreated ', undeads)

@@ -22,8 +22,8 @@ const mutations = {
     console.log('SOCKET_CONNECT')
     state.connected = true
   },
-  PLAYER_CREATED: (state, players) => {
-    console.log('PLAYER_CREATED ', players)
+  PLAYERS: (state, players) => {
+    console.log('PLAYERS ', players)
     state.players = players
   },
   UNDEADS: (state, undeads) => {
