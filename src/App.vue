@@ -1,3 +1,4 @@
+
 <template>
   <div id='app'>
     <h1>Zombie Vue</h1>
@@ -85,12 +86,13 @@ h1 {
   font-size: 1.2em;
 
   button {
-    padding: .5em 2em;
+    margin: .5em;
+    padding: .4em 1.5em;
     font-size: 1em;
     color: #fff;
     background: none;
-    border: 1px solid #fff;
-    border-radius: 1.4em;
+    border: 2px solid #fff;
+    border-radius: .2em;
     outline: none;
 
     &:active {
@@ -104,7 +106,7 @@ h1 {
 	position: relative;
   width: 800px;
   height: 400px;
-  margin: 50px auto 0;
+  margin: 40px auto 0;
 	overflow: hidden;
 }
 

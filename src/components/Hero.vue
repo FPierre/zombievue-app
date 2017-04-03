@@ -8,6 +8,7 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
+      id: 'id',
       x: 'x',
       color: 'color'
     })
@@ -19,10 +20,10 @@ export default {
     action (e) {
       switch (e.code) {
         case 'ArrowLeft':
-          this.$socket.emit('moveLeft', this.x)
+          this.$socket.emit('moveLeft', { id: this.id, x: this.x })
           break
         case 'ArrowRight':
-          this.$socket.emit('moveRight', this.x)
+          this.$socket.emit('moveRight', { id: this.id, x: this.x })
           break
         case 'Space':
           break

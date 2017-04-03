@@ -2,11 +2,13 @@
 // import * as types from '../mutation-types'
 
 const state = {
-  x: 100,
+  id: null,
+  x: null,
   color: null
 }
 
 const getters = {
+  id: state => state.id,
   x: state => state.x,
   color: state => state.color
 }
@@ -14,8 +16,10 @@ const getters = {
 const mutations = {
   HERO_CREATED: (state, { hero, players, undeads }) => {
     console.log('HERO_CREATED')
+    state.id = hero.id
     state.x = hero.x
     state.color = hero.color
+
     state.players = players
     state.undeads = undeads
   },
