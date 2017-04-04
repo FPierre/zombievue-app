@@ -1,7 +1,5 @@
 <template>
-  <div class='hero-component' :style='{ marginLeft: `${x}px`,  backgroundColor: color }'>
-    {{ name }}
-  </div>
+  <div class='hero-component' :style='{ marginLeft: `${x}px`,  backgroundColor: color }'></div>
 </template>
 
 <script>
@@ -11,7 +9,6 @@ export default {
   computed: {
     ...mapGetters({
       id: 'id',
-      name: 'name',
       x: 'x',
       color: 'color'
     })
@@ -42,6 +39,6 @@ export default {
 	bottom: 45px;
   width: 20px;
   height: 50px;
- /* z-index: 9999;*/
+  z-index: 9999;
 }
 </style>
