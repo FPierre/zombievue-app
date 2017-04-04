@@ -4,24 +4,28 @@
 const state = {
   id: null,
   x: null,
+  health: null,
   color: null
 }
 
 const getters = {
   id: state => state.id,
   x: state => state.x,
+  health: state => state.health,
   color: state => state.color
 }
 
 const mutations = {
-  HERO_CREATED: (state, { hero, players, undeads }) => {
-    console.log('HERO_CREATED')
+  HERO_CREATED: (state, { rootState, hero, players, undeads }) => {
+    console.log('HERO_CREATED, players:', players)
     state.id = hero.id
     state.x = hero.x
+    state.health = hero.health
     state.color = hero.color
 
-    state.players = players
-    state.undeads = undeads
+    rootState.players = players
+    rootState.undeads = undeads
+    rootState.connected = true
   },
   POSITION: (state, position) => {
     console.log('POSITION')
@@ -31,9 +35,9 @@ const mutations = {
 
 const actions = {
   // From server
-  socket_heroCreated: (context, { hero, players, undeads }) => {
+  socket_heroCreated: ({ commit, rootState }, { hero, players, undeads }) => {
     console.log('socket_heroCreated', hero)
-    context.commit('HERO_CREATED', { hero, players, undeads })
+    commit('HERO_CREATED', { rootState, hero, players, undeads })
   },
   // From server
   socket_moved: (context, position) => {

@@ -13,14 +13,13 @@ const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
   connected: false,
-  players: [],
-  undeads: []
+  players: {},
+  undeads: {}
 }
 
 const mutations = {
   SOCKET_CONNECT: (state) => {
     console.log('SOCKET_CONNECT')
-    state.connected = true
   },
   PLAYERS: (state, players) => {
     console.log('PLAYERS ', players)

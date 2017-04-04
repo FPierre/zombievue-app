@@ -1,3 +1,7 @@
+const heroHealth = state => {
+  return state.hero.health
+}
+
 const connected = state => {
   return state.connected
 }
@@ -11,6 +15,7 @@ const undeads = state => {
 }
 
 export default {
+  heroHealth,
   connected,
   players,
   undeads

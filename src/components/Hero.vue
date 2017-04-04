@@ -10,6 +10,7 @@ export default {
     ...mapGetters({
       id: 'id',
       x: 'x',
+      health: 'health',
       color: 'color'
     })
   },

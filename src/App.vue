@@ -11,13 +11,19 @@
     </div>
 
     <div id='game'>
+      <div v-if='connected' class='health' :style='{ width: `${heroHealth}px` }'>{{ heroHealth }}</div>
+
       <div class='moon'></div>
       <div v-for='i in 10' class='star' :class='"twinkle-star-" + i'></div>
       <div class='grass'></div>
       <div class='street'></div>
-      <hero></hero>
-      <player v-for='params in players' :params='params' :key='params'></player>
-      <undead v-for='params in undeads' :params='params' :key='params'></undead>
+
+      <template v-if='connected'>
+        <hero></hero>
+        <player v-for='params in players' :params='params' :key='params'></player>
+        <undead v-for='params in undeads' :params='params' :key='params'></undead>
+      </template>
+
       <div class='street-stripe'></div>
       <div class='hill'></div>
     </div>
@@ -35,6 +41,7 @@ export default {
   name: 'app',
   computed: {
     ...mapGetters({
+      heroHealth: 'heroHealth',
       connected: 'connected',
       players: 'players',
       undeads: 'undeads'
@@ -42,7 +49,9 @@ export default {
   },
   methods: {
     join () {
-      this.$socket.emit('join')
+      if (!this.connected) {
+        this.$socket.emit('join')
+      }
     }
   },
   components: {
@@ -108,6 +117,14 @@ h1 {
   height: 400px;
   margin: 40px auto 0;
 	overflow: hidden;
+}
+
+.health {
+  height: 12px;
+  font-size: .7em;
+  text-align: center;
+  background-color: #cc0000;
+  border-radius: .1em
 }
 
 .moon {
