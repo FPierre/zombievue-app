@@ -1,5 +1,7 @@
 <template>
-  <div class='hero-component' :style='{ marginLeft: `${x}px`,  backgroundColor: color }'></div>
+  <div class='hero-component' :style='{ marginLeft: `${x}px`,  backgroundColor: color }'>
+    {{ name }}
+  </div>
 </template>
 
 <script>
@@ -40,6 +42,6 @@ export default {
 	bottom: 45px;
   width: 20px;
   height: 50px;
-  z-index: 9999;
+ /* z-index: 9999;*/
 }
 </style>

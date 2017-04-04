@@ -92,10 +92,10 @@ h1 {
     color: #fff;
     background: none;
     border: 2px solid #fff;
-    border-radius: .2em;
+    border-radius: .1em;
     outline: none;
 
-    &:active {
+    &:hover {
       color: #111122;
       background-color: #fff;
     }
@@ -228,6 +228,7 @@ h1 {
   border-top-left-radius: 100%;
   background-color: darken(#adde60, 30%);
   z-index:-1;
+  box-shadow: 10px 0 10px #cbf191 inset;
 
   &:before {
     background-color: darken(#93cc3a, 22%);
@@ -240,6 +241,7 @@ h1 {
     position: absolute;
     transform: rotate(4deg);
     width: 120%;
+    box-shadow: 0 0 25px #cbf191 inset;
   }
 
   &:after {
