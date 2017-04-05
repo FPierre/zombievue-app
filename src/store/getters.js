@@ -10,6 +10,10 @@ const players = (state) => {
   return state.players
 }
 
+const playersCount = (state) => {
+  return Object.keys(state.players).length
+}
+
 const undeads = (state) => {
   return state.undeads
 }
@@ -18,5 +22,6 @@ export default {
   connected,
   id,
   players,
+  playersCount,
   undeads
 }

@@ -4,7 +4,7 @@
 
     <div class='controls'>
       Connected: {{ connected }}
-      Survivors: {{ players.length }}
+      Survivors: {{ playersCount }}
 
       <button @click='join'>Join</button>
     </div>
@@ -39,6 +39,7 @@ export default {
       connected: 'connected',
       id: 'id',
       players: 'players',
+      playersCount: 'playersCount',
       undeads: 'undeads'
     })
   },
