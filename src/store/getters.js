@@ -1,22 +1,22 @@
-const heroHealth = state => {
-  return state.hero.health
-}
-
-const connected = state => {
+const connected = (state) => {
   return state.connected
 }
 
-const players = state => {
+const id = (state) => {
+  return state.id
+}
+
+const players = (state) => {
   return state.players
 }
 
-const undeads = state => {
+const undeads = (state) => {
   return state.undeads
 }
 
 export default {
-  heroHealth,
   connected,
+  id,
   players,
   undeads
 }

@@ -1,4 +1,8 @@
 export default {
+  socket_heroCreated: (context, { id, undeads }) => {
+    console.log('socket_heroCreated')
+    context.commit('HERO_CREATED', { id, undeads })
+  },
   socket_playerCreated: (context, players) => {
     console.log('socket_playerCreated ', players)
     context.commit('PLAYERS', players)

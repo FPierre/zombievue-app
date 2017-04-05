@@ -1,4 +1,3 @@
-
 <template>
   <div id='app'>
     <h1>Zombie Vue</h1>
@@ -11,15 +10,12 @@
     </div>
 
     <div id='game'>
-      <div v-if='connected' class='health' :style='{ width: `${heroHealth}px` }'>{{ heroHealth }}</div>
-
       <div class='moon'></div>
       <div v-for='i in 10' class='star' :class='"twinkle-star-" + i'></div>
       <div class='grass'></div>
       <div class='street'></div>
 
       <template v-if='connected'>
-        <hero></hero>
         <player v-for='params in players' :params='params' :key='params'></player>
         <undead v-for='params in undeads' :params='params' :key='params'></undead>
       </template>
@@ -33,7 +29,6 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import Hero from './components/Hero'
 import Player from './components/Player'
 import Undead from './components/Undead'
 
@@ -41,21 +36,35 @@ export default {
   name: 'app',
   computed: {
     ...mapGetters({
-      heroHealth: 'heroHealth',
       connected: 'connected',
+      id: 'id',
       players: 'players',
       undeads: 'undeads'
     })
+  },
+  mounted () {
+    window.addEventListener('keydown', this.action)
   },
   methods: {
     join () {
       if (!this.connected) {
         this.$socket.emit('join')
       }
+    },
+    action (e) {
+      switch (e.code) {
+        case 'ArrowLeft':
+          this.$socket.emit('moveLeft', this.id)
+          break
+        case 'ArrowRight':
+          this.$socket.emit('moveRight', this.id)
+          break
+        case 'Space':
+          break
+      }
     }
   },
   components: {
-    Hero,
     Player,
     Undead
   }
@@ -117,14 +126,6 @@ h1 {
   height: 400px;
   margin: 40px auto 0;
 	overflow: hidden;
-}
-
-.health {
-  height: 12px;
-  font-size: .7em;
-  text-align: center;
-  background-color: #cc0000;
-  border-radius: .1em
 }
 
 .moon {
