@@ -1,20 +1,20 @@
-const connected = (state) => {
+const connected = state => {
   return state.connected
 }
 
-const id = (state) => {
+const id = state => {
   return state.id
 }
 
-const players = (state) => {
+const players = state => {
   return state.players
 }
 
-const playersCount = (state) => {
+const playersCount = state => {
   return Object.keys(state.players).length
 }
 
-const undeads = (state) => {
+const undeads = state => {
   return state.undeads
 }
 

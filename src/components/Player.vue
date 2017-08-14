@@ -15,8 +15,8 @@ export default {
 
 <style scoped>
 .player-component {
-	position: absolute;
-	bottom: 45px;
+  position: absolute;
+  bottom: 45px;
   width: 20px;
   height: 50px;
   z-index: 9999;
