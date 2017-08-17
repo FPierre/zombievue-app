@@ -11,7 +11,7 @@
 
     <div id='game'>
       <div class='moon'></div>
-      <div v-for='i in 10' class='star' :class="`twinkle-star-${i}`"></div>
+      <div v-for='i in 10' class='star' :class='`twinkle-star-${i}`'></div>
       <div class='grass'></div>
       <div class='street'></div>
 
@@ -57,12 +57,13 @@ export default {
     action (e) {
       switch (e.code) {
         case 'ArrowLeft':
-          this.$socket.emit('moveLeft', this.id)
+          this.$socket.emit('left', this.id)
           break
         case 'ArrowRight':
-          this.$socket.emit('moveRight', this.id)
+          this.$socket.emit('right', this.id)
           break
         case 'Space':
+          this.$socket.emit('attack', this.id)
           break
       }
     },
