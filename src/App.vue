@@ -15,7 +15,7 @@
       <div class='grass'></div>
       <div class='street'></div>
 
-      <template v-if='connected'>
+      <template v-if='joined'>
         <player v-for='params in players' :params='params' :key='params'></player>
         <undead v-for='params in undeads' :params='params' :key='params.id'></undead>
       </template>
@@ -34,13 +34,14 @@ import Undead from '@/components/Undead'
 export default {
   name: 'app',
   computed: {
-    ...mapGetters({
-      connected: 'connected',
-      id: 'id',
-      players: 'players',
-      playersCount: 'playersCount',
-      undeads: 'undeads'
-    })
+    ...mapGetters([
+      'connected',
+      'joined',
+      'id',
+      'players',
+      'undeads',
+      'playersCount'
+    ])
   },
   mounted () {
     window.addEventListener('keydown', this.action)
@@ -49,6 +50,7 @@ export default {
     join () {
       // if (!this.connected) {
       this.$socket.emit('join')
+      console.log('join')
       // }
     },
     action (e) {

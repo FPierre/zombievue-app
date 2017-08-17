@@ -1,4 +1,10 @@
 export default {
+  socket_Joined: context => {
+    console.log('socket_Joined')
+
+    context.commit('JOINED')
+  },
+
   socket_heroCreated: (context, { id, undeads }) => {
     console.log('socket_heroCreated')
 

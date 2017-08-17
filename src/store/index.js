@@ -12,6 +12,7 @@ const debug = process.env.NODE_ENV !== 'production'
 const state = {
   // connected: false,
   connected: true,
+  joined: true,
   id: null,
   players: {},
   undeads: []
@@ -20,6 +21,12 @@ const state = {
 const mutations = {
   SOCKET_CONNECT: state => {
     console.log('SOCKET_CONNECT')
+  },
+
+  JOINED: state => {
+    console.log('JOINED')
+
+    state.joined = true
   },
 
   HERO_CREATED: (state, { id, undeads }) => {

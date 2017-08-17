@@ -22,7 +22,7 @@ export default {
 }
 
 .undead {
-  background-image: url('../assets/undeads-1.png');
+  background-image: url('../assets/undead-1.png');
   background-repeat: no-repeat;
 }
 
