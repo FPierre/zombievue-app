@@ -1,6 +1,6 @@
 <template>
   <div class='player-component' :style='{ marginLeft: `${params.x}px` }'>
-    <div class='player idle' :class='params.direction'></div>
+    <div class='player' :class='[params.direction, params.state]'></div>
     <life-bar class='life-bar' :health='params.health'></life-bar>
   </div>
 </template>
@@ -48,6 +48,19 @@ export default {
     background-position: -1162px;
   }
 }
+
+.walk {
+  animation: walk .65s steps(7) infinite;
+  background: url('../assets/player-walk.png') -10px -10px;
+  height: 106px;
+  width: 148px;
+}
+@keyframes walk {
+  100% {
+    background-position: -1176px;
+  }
+}
+
 
 /*
 .player-component {

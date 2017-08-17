@@ -45,6 +45,7 @@ export default {
   },
   mounted () {
     window.addEventListener('keydown', this.action)
+    window.addEventListener('keyup', this.inaction)
   },
   methods: {
     join () {
@@ -64,6 +65,9 @@ export default {
         case 'Space':
           break
       }
+    },
+    inaction (e) {
+      this.$socket.emit('idle', this.id)
     }
   },
   components: {
