@@ -11,12 +11,12 @@
 
     <div id='game'>
       <div class='moon'></div>
-      <div v-for='i in 10' class='star' :class='"twinkle-star-" + i'></div>
+      <div v-for='i in 10' class='star' :class="`twinkle-star-${i}`"></div>
       <div class='grass'></div>
       <div class='street'></div>
 
       <template v-if='joined'>
-        <player v-for='params in players' :params='params' :key='params'></player>
+        <player v-for='params in players' :params='params' :key='params.id'></player>
         <undead v-for='params in undeads' :params='params' :key='params.id'></undead>
       </template>
 

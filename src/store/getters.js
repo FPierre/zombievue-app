@@ -5,7 +5,7 @@ const players = state => state.players
 const undeads = state => state.undeads
 
 const playersCount = state => {
-  return Object.keys(state.players).length
+  return state.players.length
 }
 
 export default {

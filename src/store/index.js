@@ -14,7 +14,7 @@ const state = {
   connected: true,
   joined: true,
   id: null,
-  players: {},
+  players: [],
   undeads: []
 }
 
