@@ -1,7 +1,7 @@
 <template>
   <div class='player-component' :style='{ marginLeft: `${params.x}px` }'>
     <div class='player' :class='[params.direction, params.state]'></div>
-    <!-- <life-bar class='life-bar' :health='params.health'></life-bar> -->
+    <life-bar class='life-bar' :health='params.health'></life-bar>
   </div>
 </template>
 

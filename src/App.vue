@@ -4,6 +4,7 @@
 
     <div class='controls'>
       <p>Connected: {{ connected }}</p>
+      <p>Joined: {{ joined }}</p>
       <p>Survivors: {{ playersCount }}</p>
 
       <button @click='join'>Join</button>
@@ -49,10 +50,9 @@ export default {
   },
   methods: {
     join () {
-      // if (!this.connected) {
-      this.$socket.emit('join')
-      console.log('join')
-      // }
+      if (!this.joined) {
+        this.$socket.emit('join')
+      }
     },
     action (e) {
       switch (e.code) {
