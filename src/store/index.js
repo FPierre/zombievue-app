@@ -31,7 +31,7 @@ const mutations = {
     state.joined = true
 
     state.id = id
-    // state.players = players
+    state.players = players
     state.undeads = undeads
   },
 

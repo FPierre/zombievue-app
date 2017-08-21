@@ -16,74 +16,61 @@ export default {
 
 <style scoped>
 .player-component {
-  // display: inline-block;
-  // height: 50px;
-  // position: absolute;
-  // top: 245px;
-  // width: 20px;
-  // background-color: green;
+  position: absolute;
+  bottom: 74px;
+}
+
+.life-bar {
+  position: absolute;
+  bottom: -30px;
 }
 
 .left {
-  transform: scaleX(-1);
+  transform: rotateY(180deg);
+  transform-origin: 45px;
 }
 
 .right {
-  transform: scaleX(1);
+  // transform: rotateY(-180deg);
+  // transform-origin: 100px;
 }
 
 .idle {
-  animation: idle .65s steps(7) infinite;
+  animation: player-idle .65s steps(7) infinite;
   background: url('../assets/player-idle.png');
   height: 103px;
   width: 146px;
 }
 
-@keyframes idle {
+@keyframes player-idle {
   100% {
     background-position: -1022px;
   }
 }
 
 .walk {
-  animation: walk .65s steps(7) infinite;
+  animation: player-walk .65s steps(7) infinite;
   background: url('../assets/player-walk.png');
   height: 106px;
   width: 148px;
 }
 
-@keyframes walk {
+@keyframes player-walk {
   100% {
     background-position: -1036px;
   }
 }
 
 .attack {
-  animation: attack .65s steps(8) infinite;
+  animation: player-attack .65s steps(8) infinite;
   background: url('../assets/player-attack.png');
   height: 110px;
   width: 164px;
 }
 
-@keyframes attack {
+@keyframes player-attack {
   100% {
     background-position: -1312px;
   }
-}
-
-/*
-.player-component {
-  position: absolute;
-  bottom: 45px;
-  width: 20px;
-  height: 50px;
-  z-index: 9999;
-}
-*/
-
-.player-component .life-bar {
-  position: absolute;
-  bottom: -40px;
-  left: -40px;
 }
 </style>
