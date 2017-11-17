@@ -31,8 +31,8 @@ export default {
 }
 
 .right {
-  // transform: rotateY(-180deg);
-  // transform-origin: 100px;
+  /*transform: rotateY(-180deg);*/
+  /*transform-origin: 100px;*/
 }
 
 .idle {

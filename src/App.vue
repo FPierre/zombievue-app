@@ -25,20 +25,47 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import Player from '@/components/Player'
 import Undead from '@/components/Undead'
 
 export default {
   name: 'app',
-  computed: {
-    ...mapGetters([
-      'connected',
-      'joined',
-      'id',
-      'players',
-      'undeads'
-    ])
+  computed: mapState([
+    'client',
+    'connected',
+    'id',
+    'joined',
+    'players',
+    'undeads'
+  ]),
+  created () {
+    this.client.onerror = () => {
+      console.log('Client: connection error')
+    }
+
+    this.client.onopen = () => {
+      console.log('Client: websocket client connected')
+
+      this.$store.dispatch('connected')
+    }
+
+    this.client.onclose = () => {
+      console.log('Client: echo-protocol client closed')
+      this.$store.dispatch('disconnected')
+    }
+
+    this.client.onmessage = e => {
+      if (typeof e.data === 'string') {
+        console.log(`Client: received: '${e.data}'`)
+
+        const { event, data } = JSON.parse(e.data)
+        console.log(event)
+
+        this.$store.dispatch(event, data)
+      }
+    }
   },
   mounted () {
     window.addEventListener('keydown', this.action)
@@ -46,29 +73,34 @@ export default {
   },
   methods: {
     join () {
-      if (!this.joined) {
-        this.$socket.emit('join')
+      if (this.connected && !this.joined) {
+        this.$store.dispatch('join')
       }
     },
     action (e) {
       switch (e.code) {
         case 'ArrowLeft':
-          this.$socket.emit('left', this.id)
+          this.$store.dispatch('moveLeft', this.id)
+          // this.$socket.emit('left', this.id)
           break
         case 'ArrowRight':
-          this.$socket.emit('right', this.id)
+          this.$store.dispatch('moveRight', this.id)
+          // this.$socket.emit('right', this.id)
           break
         case 'Space':
-          this.$socket.emit('attack', this.id)
+          this.$store.dispatch('attack', this.id)
+          // this.$socket.emit('attack', this.id)
           break
       }
     },
     inaction (e) {
+      const { code } = e
+
       // OPTMIZE
-      if (e.code === 'ArrowLeft' ||
-          e.code === 'ArrowRight' ||
-          e.code === 'Space') {
-        this.$socket.emit('idle', this.id)
+      if (code === 'ArrowLeft' ||
+          code === 'ArrowRight' ||
+          code === 'Space') {
+        // this.$store.dispatch('idle', this.id)
       }
     }
   },

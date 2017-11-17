@@ -1,16 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import * as actions from './actions'
-// import * as getters from './getters'
+import Ws from 'websocket'
+
 import actions from './actions'
 import getters from './getters'
 
 Vue.use(Vuex)
 
+const W3CWebSocket = Ws.w3cwebsocket
+const client = new W3CWebSocket(`ws://localhost:8083/`, 'echo-protocol')
+
 const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
-  // connected: false,
+  client,
   connected: false,
   joined: false,
   id: null,
@@ -19,31 +22,31 @@ const state = {
 }
 
 const mutations = {
-  SOCKET_CONNECT: state => {
-    console.log('SOCKET_CONNECT')
-
+  CONNECTED: state => {
     state.connected = true
+  },
+
+  DISCONNECTED: state => {
+    state.connected = false
+  },
+
+  JOINED: state => {
+    state.joined = true
   },
 
   HERO_CREATED: (state, { id, players, undeads }) => {
     console.log('HERO_CREATED, id:', id)
-
-    state.joined = true
 
     state.id = id
     state.players = players
     state.undeads = undeads
   },
 
-  PLAYERS: (state, players) => {
-    // console.log('PLAYERS', players)
-
+  PLAYERS: (state, { players }) => {
     state.players = players
   },
 
-  UNDEADS: (state, undeads) => {
-    // console.log('UNDEADS', undeads)
-
+  UNDEADS: (state, { undeads }) => {
     state.undeads = undeads
   }
 }

@@ -1,37 +1,80 @@
 export default {
-  socket_Joined: context => {
-    console.log('socket_Joined')
+  connected: ({ commit }) => {
+    console.log('Store: connected action')
 
-    context.commit('JOINED')
+    commit('CONNECTED')
   },
 
-  socket_heroCreated: (context, { id, undeads }) => {
-    console.log('socket_heroCreated')
+  disconnected: ({ commit }) => {
+    console.log('Store: disconnected action')
 
-    context.commit('HERO_CREATED', { id, undeads })
+    commit('DISCONNECTED')
   },
 
-  socket_playerCreated: (context, players) => {
-    console.log('socket_playerCreated', players)
+  join: ({ state, commit }) => {
+    console.log('Store: join action')
 
-    context.commit('PLAYERS', players)
+    const { client } = state
+
+    if (state.connected && client.readyState === client.OPEN) {
+      client.send(JSON.stringify({ event: 'join' }))
+    }
   },
 
-  socket_playerMoved: (context, players) => {
-    console.log('socket_playerMoved', players)
-
-    context.commit('PLAYERS', players)
+  joined: ({ state, commit }) => {
+    commit('JOINED')
   },
 
-  socket_undeadCreated: (context, undeads) => {
-    console.log('socket_undeadCreated', undeads)
+  heroCreated: (context, { id, players, undeads }) => {
+    console.log('heroCreated')
 
-    context.commit('UNDEADS', undeads)
+    context.commit('HERO_CREATED', { id, players, undeads })
   },
 
-  socket_undeadsMoved: (context, undeads) => {
-    console.log('socket_undeadsMoved', undeads)
+  playerCreated: (context, { players }) => {
+    console.log('playerCreated')
 
-    context.commit('UNDEADS', undeads)
+    context.commit('PLAYERS', { players })
+  },
+
+  moveLeft: ({ state }, id) => {
+    console.log('Store: moveLeft action')
+
+    const { client } = state
+
+    if (state.joined && client.readyState === client.OPEN) {
+      client.send(JSON.stringify({ event: 'moveLeft', data: { id } }))
+    }
+  },
+
+  moveRight: ({ state }, id) => {
+    console.log('Store: moveRight action')
+
+    const { client } = state
+
+    if (state.joined && client.readyState === client.OPEN) {
+      client.send(JSON.stringify({ event: 'moveRight', data: { id } }))
+    }
+  },
+
+  // idle: ({ state }, id) => {
+  //   console.log('Store: idle action')
+  //
+  // },
+
+  playerMoved: (context, { players }) => {
+    context.commit('PLAYERS', { players })
   }
+
+  // socket_undeadCreated: (context, undeads) => {
+  //   console.log('socket_undeadCreated', undeads)
+  //
+  //   context.commit('UNDEADS', undeads)
+  // },
+  //
+  // socket_undeadsMoved: (context, undeads) => {
+  //   console.log('socket_undeadsMoved', undeads)
+  //
+  //   context.commit('UNDEADS', undeads)
+  // }
 }
