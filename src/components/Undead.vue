@@ -16,22 +16,32 @@ export default {
   bottom: 74px;
 }
 
-.left {
+/*.left {
   transform: scaleX(-1);
 }
 
 .right {
   transform: scaleX(1);
+}*/
+
+.left {
+  transform: rotateY(180deg);
+  transform-origin: 45px;
 }
 
+/*.right {
+  transform: rotateY(-180deg);
+  transform-origin: 100px;
+}*/
+
 .walk {
-  animation: walk .65s steps(6) infinite;
+  animation: undead-walk .65s steps(6) infinite;
   background: url('../assets/undead-walk.png');
   height: 189px;
   width: 92px;
 }
 
-@keyframes walk {
+@keyframes undead-walk {
   100% {
     background-position: -617px;
   }

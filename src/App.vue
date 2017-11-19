@@ -81,15 +81,12 @@ export default {
       switch (e.code) {
         case 'ArrowLeft':
           this.$store.dispatch('moveLeft', this.id)
-          // this.$socket.emit('left', this.id)
           break
         case 'ArrowRight':
           this.$store.dispatch('moveRight', this.id)
-          // this.$socket.emit('right', this.id)
           break
         case 'Space':
           this.$store.dispatch('attack', this.id)
-          // this.$socket.emit('attack', this.id)
           break
       }
     },
@@ -100,7 +97,7 @@ export default {
       if (code === 'ArrowLeft' ||
           code === 'ArrowRight' ||
           code === 'Space') {
-        // this.$store.dispatch('idle', this.id)
+        this.$store.dispatch('idle', this.id)
       }
     }
   },

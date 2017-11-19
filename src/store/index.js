@@ -8,12 +8,9 @@ import getters from './getters'
 Vue.use(Vuex)
 
 const W3CWebSocket = Ws.w3cwebsocket
-const client = new W3CWebSocket(`ws://localhost:8083/`, 'echo-protocol')
-
-const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
-  client,
+  client: new W3CWebSocket(`ws://localhost:8083/`, 'echo-protocol'),
   connected: false,
   joined: false,
   id: null,
@@ -56,5 +53,5 @@ export default new Vuex.Store({
   actions,
   getters,
   mutations,
-  strict: debug
+  strict: process.env.NODE_ENV !== 'production'
 })

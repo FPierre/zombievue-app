@@ -57,24 +57,19 @@ export default {
     }
   },
 
-  // idle: ({ state }, id) => {
-  //   console.log('Store: idle action')
-  //
-  // },
+  idle: ({ state }, id) => {
+    console.log('Store: idle action')
 
-  playerMoved: (context, { players }) => {
-    context.commit('PLAYERS', { players })
-  }
+    const { client } = state
 
-  // socket_undeadCreated: (context, undeads) => {
-  //   console.log('socket_undeadCreated', undeads)
-  //
-  //   context.commit('UNDEADS', undeads)
-  // },
-  //
-  // socket_undeadsMoved: (context, undeads) => {
-  //   console.log('socket_undeadsMoved', undeads)
-  //
-  //   context.commit('UNDEADS', undeads)
-  // }
+    if (state.joined && client.readyState === client.OPEN) {
+      client.send(JSON.stringify({ event: 'idle', data: { id } }))
+    }
+  },
+
+  playerMoved: (context, { players }) => context.commit('PLAYERS', { players }),
+
+  undeadCreated: (context, { undeads }) => context.commit('UNDEADS', { undeads }),
+
+  undeadsMoved: (context, { undeads }) => context.commit('UNDEADS', { undeads })
 }
