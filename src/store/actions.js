@@ -1,75 +1,75 @@
 export default {
-  connected: ({ commit }) => {
-    console.log('Store: connected action')
+  connected: ({ commit }) => commit('CONNECTED'),
 
-    commit('CONNECTED')
-  },
+  disconnected: ({ commit }) => commit('DISCONNECTED'),
 
-  disconnected: ({ commit }) => {
-    console.log('Store: disconnected action')
+  join: ({ getters, state }) => {
+    // console.log('Store: join action')
 
-    commit('DISCONNECTED')
-  },
-
-  join: ({ state, commit }) => {
-    console.log('Store: join action')
-
-    const { client } = state
-
-    if (state.connected && client.readyState === client.OPEN) {
-      client.send(JSON.stringify({ event: 'join' }))
+    if (state.connected && state.client.readyState === state.client.OPEN) {
+      state.client.send(JSON.stringify({ event: 'join' }))
     }
   },
 
-  joined: ({ state, commit }) => {
+  joined: ({ commit }) => {
     commit('JOINED')
   },
 
-  heroCreated: (context, { id, players, undeads }) => {
-    console.log('heroCreated')
+  heroCreated: ({ commit, getters }, { id, players, undeads }) => {
+    // console.log('heroCreated')
 
-    context.commit('HERO_CREATED', { id, players, undeads })
-  },
-
-  playerCreated: (context, { players }) => {
-    console.log('playerCreated')
-
-    context.commit('PLAYERS', { players })
-  },
-
-  moveLeft: ({ state }, id) => {
-    console.log('Store: moveLeft action')
-
-    const { client } = state
-
-    if (state.joined && client.readyState === client.OPEN) {
-      client.send(JSON.stringify({ event: 'moveLeft', data: { id } }))
+    if (getters.ready) {
+      commit('HERO_CREATED', { id, players, undeads })
     }
   },
 
-  moveRight: ({ state }, id) => {
-    console.log('Store: moveRight action')
+  playerCreated: ({ commit, getters }, { players }) => {
+    // console.log('playerCreated')
 
-    const { client } = state
-
-    if (state.joined && client.readyState === client.OPEN) {
-      client.send(JSON.stringify({ event: 'moveRight', data: { id } }))
+    if (getters.ready) {
+      commit('PLAYERS', { players })
     }
   },
 
-  idle: ({ state }, id) => {
-    console.log('Store: idle action')
+  moveLeft: ({ getters, state }, id) => {
+    // console.log('Store: moveLeft action')
 
-    const { client } = state
-
-    if (state.joined && client.readyState === client.OPEN) {
-      client.send(JSON.stringify({ event: 'idle', data: { id } }))
+    if (getters.ready) {
+      state.client.send(JSON.stringify({ event: 'moveLeft', data: { id } }))
     }
   },
 
-  playerMoved: (context, { players }) => context.commit('PLAYERS', { players }),
+  moveRight: ({ getters, state }, id) => {
+    // console.log('Store: moveRight action')
 
-  undeadCreated: (context, { undeads }) => context.commit('UNDEADS', { undeads }),
+    if (getters.ready) {
+      state.client.send(JSON.stringify({ event: 'moveRight', data: { id } }))
+    }
+  },
 
-  undeadsMoved: (context, { undeads }) => context.commit('UNDEADS', { undeads })
+  idle: ({ getters, state }, id) => {
+    // console.log('Store: idle action')
+
+    if (getters.ready) {
+      state.client.send(JSON.stringify({ event: 'idle', data: { id } }))
+    }
+  },
+
+  playerMoved: ({ commit, getters }, { players }) => {
+    if (getters.ready) {
+      commit('PLAYERS', { players })
+    }
+  },
+
+  undeadCreated: ({ commit, getters }, { undeads }) => {
+    if (getters.ready) {
+      commit('UNDEADS', { undeads })
+    }
+  },
+
+  undeadsMoved: ({ commit, getters }, { undeads }) => {
+    if (getters.ready) {
+      commit('UNDEADS', { undeads })
+    }
+  }
 }

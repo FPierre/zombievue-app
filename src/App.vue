@@ -25,7 +25,6 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
 import { mapState } from 'vuex'
 import Player from '@/components/Player'
 import Undead from '@/components/Undead'
@@ -47,7 +46,6 @@ export default {
 
     this.client.onopen = () => {
       console.log('Client: websocket client connected')
-
       this.$store.dispatch('connected')
     }
 
