@@ -55,6 +55,14 @@ export default {
     }
   },
 
+  attack: ({ getters, state }, id) => {
+    // console.log('Store: attack action')
+
+    if (getters.ready) {
+      state.client.send(JSON.stringify({ event: 'attack', data: { id } }))
+    }
+  },
+
   playerMoved: ({ commit, getters }, { players }) => {
     if (getters.ready) {
       commit('PLAYERS', { players })
