@@ -13,6 +13,7 @@ const state = {
   client: new W3CWebSocket(`ws://localhost:8083/`, 'echo-protocol'),
   connected: false,
   joined: false,
+  playerType: null,
   id: null,
   players: [],
   undeads: []
@@ -31,9 +32,13 @@ const mutations = {
     state.joined = true
   },
 
-  HERO_CREATED: (state, { id, players, undeads }) => {
-    console.log('HERO_CREATED, id:', id)
+  PLAYER_TYPE: (state, playerType) => {
+    console.log('PLAYER_TYPE, playerType:', playerType)
 
+    state.playerType = playerType
+  },
+
+  HERO_CREATED: (state, { id, players, undeads }) => {
     state.id = id
     state.players = players
     state.undeads = undeads

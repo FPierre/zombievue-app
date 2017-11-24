@@ -1,6 +1,6 @@
 <template>
   <div class='player-component' :style='{ marginLeft: `${params.x}px` }'>
-    <div class='player' :class='[params.direction, params.state]'></div>
+    <div class='player' :class='[params.direction, params.state, params.type]'></div>
     <life-bar class='life-bar' :health='params.health'></life-bar>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 .player-component {
   position: absolute;
   bottom: 74px;
@@ -36,10 +36,26 @@ export default {
 }
 
 .idle {
-  animation: player-idle .65s steps(7) infinite;
-  background: url('../assets/player-idle.png');
-  height: 103px;
-  width: 146px;
+  &.axe-warrior {
+    animation: player-idle .65s steps(7) infinite;
+    background: url('../assets/images/players/axe-warrior/idle.png');
+    height: 103px;
+    width: 146px;
+  }
+
+  &.spear-warrior {
+    animation: player-idle .65s steps(7) infinite;
+    background: url('../assets/images/players/spear-warrior/idle.png');
+    height: 103px;
+    width: 146px;
+  }
+
+  &.sword-warrior {
+    animation: player-idle .65s steps(7) infinite;
+    background: url('../assets/images/players/sword-warrior/idle.png');
+    height: 103px;
+    width: 146px;
+  }
 }
 
 @keyframes player-idle {
@@ -50,7 +66,7 @@ export default {
 
 .walk {
   animation: player-walk .65s steps(7) infinite;
-  background: url('../assets/player-walk.png');
+  background: url('../assets/images/players/spear-warrior/walk.png');
   height: 106px;
   width: 148px;
 }
@@ -63,7 +79,7 @@ export default {
 
 .attack {
   animation: player-attack .65s steps(8) infinite;
-  background: url('../assets/player-attack.png');
+  background: url('../assets/images/players/spear-warrior/attack.png');
   height: 110px;
   width: 164px;
 }

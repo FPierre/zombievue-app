@@ -6,13 +6,19 @@ export default {
   join: ({ getters, state }) => {
     // console.log('Store: join action')
 
+    const { playerType } = state
+
     if (state.connected && state.client.readyState === state.client.OPEN) {
-      state.client.send(JSON.stringify({ event: 'join' }))
+      state.client.send(JSON.stringify({ event: 'join', data: { playerType } }))
     }
   },
 
   joined: ({ commit }) => {
     commit('JOINED')
+  },
+
+  playerType: ({ commit }, playerType) => {
+    commit('PLAYER_TYPE', playerType)
   },
 
   heroCreated: ({ commit, getters }, { id, players, undeads }) => {
