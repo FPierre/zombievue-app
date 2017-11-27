@@ -37,56 +37,124 @@ export default {
 
 .idle {
   &.axe-warrior {
-    animation: player-idle .65s steps(7) infinite;
+    animation: axe-warrior-idle .65s steps(7) infinite;
     background: url('../assets/images/players/axe-warrior/idle.png');
-    height: 103px;
-    width: 146px;
+    height: 106px;
+    width: 103px;
   }
 
   &.spear-warrior {
-    animation: player-idle .65s steps(7) infinite;
+    animation: spear-warrior-idle .65s steps(7) infinite;
     background: url('../assets/images/players/spear-warrior/idle.png');
     height: 103px;
     width: 146px;
   }
 
   &.sword-warrior {
-    animation: player-idle .65s steps(7) infinite;
+    animation: sword-warrior-idle .65s steps(7) infinite;
     background: url('../assets/images/players/sword-warrior/idle.png');
-    height: 103px;
-    width: 146px;
+    height: 106px;
+    width: 116px;
   }
 }
 
-@keyframes player-idle {
+@keyframes axe-warrior-idle {
+  100% {
+    background-position: -770px;
+  }
+}
+
+@keyframes spear-warrior-idle {
   100% {
     background-position: -1022px;
   }
 }
 
-.walk {
-  animation: player-walk .65s steps(7) infinite;
-  background: url('../assets/images/players/spear-warrior/walk.png');
-  height: 106px;
-  width: 148px;
+@keyframes sword-warrior-idle {
+  100% {
+    background-position: -805px;
+  }
 }
 
-@keyframes player-walk {
+.walk {
+  &.axe-warrior {
+    animation: axe-warrior-walk .65s steps(7) infinite;
+    background: url('../assets/images/players/axe-warrior/walk.png');
+    height: 106px;
+    width: 103px;
+  }
+
+  &.spear-warrior {
+    animation: spear-warrior-walk .65s steps(7) infinite;
+    background: url('../assets/images/players/spear-warrior/walk.png');
+    height: 106px;
+    width: 148px;
+  }
+
+  &.sword-warrior {
+    animation: sword-warrior-walk .65s steps(7) infinite;
+    background: url('../assets/images/players/sword-warrior/walk.png');
+    height: 106px;
+    width: 116px;
+  }
+}
+
+@keyframes axe-warrior-walk {
+  100% {
+    background-position: -791px;
+  }
+}
+
+@keyframes spear-warrior-walk {
   100% {
     background-position: -1036px;
   }
 }
 
-.attack {
-  animation: player-attack .65s steps(8) infinite;
-  background: url('../assets/images/players/spear-warrior/attack.png');
-  height: 110px;
-  width: 164px;
+@keyframes sword-warrior-walk {
+  100% {
+    background-position: -833px;
+  }
 }
 
-@keyframes player-attack {
+.attack {
+  &.axe-warrior {
+    animation: axe-warrior-attack .65s steps(7) infinite;
+    background: url('../assets/images/players/axe-warrior/attack.png');
+    height: 106px;
+    width: 100px;
+  }
+
+  &.spear-warrior {
+    animation: spear-warrior-attack .65s steps(8) infinite;
+    background: url('../assets/images/players/spear-warrior/attack.png');
+    height: 110px;
+    width: 164px;
+  }
+
+  &.sword-warrior {
+    animation: sword-warrior-attack .65s steps(7) infinite;
+    background: url('../assets/images/players/sword-warrior/attack.png');
+    height: 106px;
+    width: 100px;
+  }
+}
+
+@keyframes axe-warrior-attack {
+  100% {
+    background-position: -714px;
+  }
+}
+
+@keyframes spear-warrior-attack {
   100% {
     background-position: -1312px;
+  }
+}
+
+@keyframes sword-warrior-attack {
+  100% {
+    background-position: -847px;
   }
 }
 </style>
