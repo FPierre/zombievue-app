@@ -36,7 +36,7 @@ export default {
 
 .walk {
   animation: undead-walk .65s steps(6) infinite;
-  background: url('../assets/images/undead-walk.png');
+  background: url('../assets/images/undeads/standard-undead/walk.png');
   height: 189px;
   width: 92px;
 }
