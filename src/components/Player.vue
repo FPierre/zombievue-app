@@ -39,8 +39,8 @@ export default {
   &.axe-warrior {
     animation: axe-warrior-idle .65s steps(7) infinite;
     background: url('../assets/images/players/axe-warrior/idle.png');
-    height: 106px;
-    width: 103px;
+    height: 100px;
+    width: 114px;
   }
 
   &.spear-warrior {
@@ -53,14 +53,14 @@ export default {
   &.sword-warrior {
     animation: sword-warrior-idle .65s steps(7) infinite;
     background: url('../assets/images/players/sword-warrior/idle.png');
-    height: 106px;
-    width: 116px;
+    height: 100px;
+    width: 120px;
   }
 }
 
 @keyframes axe-warrior-idle {
   100% {
-    background-position: -770px;
+    background-position: -833px;
   }
 }
 
@@ -72,7 +72,7 @@ export default {
 
 @keyframes sword-warrior-idle {
   100% {
-    background-position: -805px;
+    background-position: -833px;
   }
 }
 
@@ -80,8 +80,8 @@ export default {
   &.axe-warrior {
     animation: axe-warrior-walk .65s steps(7) infinite;
     background: url('../assets/images/players/axe-warrior/walk.png');
-    height: 106px;
-    width: 103px;
+    height: 100px;
+    width: 115px;
   }
 
   &.spear-warrior {
@@ -94,14 +94,14 @@ export default {
   &.sword-warrior {
     animation: sword-warrior-walk .65s steps(7) infinite;
     background: url('../assets/images/players/sword-warrior/walk.png');
-    height: 106px;
-    width: 116px;
+    height: 100px;
+    width: 118px;
   }
 }
 
 @keyframes axe-warrior-walk {
   100% {
-    background-position: -791px;
+    background-position: -847px;
   }
 }
 
@@ -113,7 +113,7 @@ export default {
 
 @keyframes sword-warrior-walk {
   100% {
-    background-position: -833px;
+    background-position: -839px;
   }
 }
 
@@ -121,7 +121,7 @@ export default {
   &.axe-warrior {
     animation: axe-warrior-attack .65s steps(7) infinite;
     background: url('../assets/images/players/axe-warrior/attack.png');
-    height: 106px;
+    height: 100px;
     width: 100px;
   }
 
@@ -135,14 +135,14 @@ export default {
   &.sword-warrior {
     animation: sword-warrior-attack .65s steps(7) infinite;
     background: url('../assets/images/players/sword-warrior/attack.png');
-    height: 106px;
-    width: 100px;
+    height: 100px;
+    width: 116px;
   }
 }
 
 @keyframes axe-warrior-attack {
   100% {
-    background-position: -714px;
+    background-position: -707px;
   }
 }
 
@@ -154,7 +154,7 @@ export default {
 
 @keyframes sword-warrior-attack {
   100% {
-    background-position: -847px;
+    background-position: -812px;
   }
 }
 </style>

@@ -10,11 +10,11 @@ export default {
 
 <style scoped>
 .life-bar-component {
-  height: 11px;
-  text-align: center;
-  font-size: .7em;
   background-color: #cc0000;
-  border: 1px solid #990000;
   border-radius: .2em;
+  border: 1px solid #990000;
+  font-size: .9em;
+  line-height: 12px;
+  text-align: center;
 }
 </style>
