@@ -37,13 +37,13 @@ export default {
 .walk {
   animation: undead-walk .65s steps(6) infinite;
   background: url('../assets/images/undeads/standard-undead/walk.png');
-  height: 189px;
-  width: 92px;
+  height: 106px;
+  width: 60px;
 }
 
 @keyframes undead-walk {
   100% {
-    background-position: -617px;
+    background-position: -342px;
   }
 }
 </style>
