@@ -12,10 +12,11 @@ const W3CWebSocket = Ws.w3cwebsocket
 const state = {
   client: new W3CWebSocket(`ws://localhost:8083/`, 'echo-protocol'),
   connected: false,
-  joined: false,
-  playerType: null,
+  hit: false,
   id: null,
+  joined: false,
   players: [],
+  playerType: null,
   undeads: []
 }
 
@@ -33,8 +34,6 @@ const mutations = {
   },
 
   PLAYER_TYPE: (state, playerType) => {
-    console.log('PLAYER_TYPE, playerType:', playerType)
-
     state.playerType = playerType
   },
 
@@ -50,6 +49,10 @@ const mutations = {
 
   UNDEADS: (state, { undeads }) => {
     state.undeads = undeads
+  },
+
+  HIT: state => {
+    state.hit = true
   }
 }
 

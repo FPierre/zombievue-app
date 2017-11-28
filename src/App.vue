@@ -1,6 +1,6 @@
 <template>
   <div id='app'>
-    <h1>Zombie Vue</h1>
+    <h1 :class='{ "hit": hit }'>Zombie Vue</h1>
 
     <div id='game'>
       <template v-if='joined'>
@@ -42,6 +42,7 @@ export default {
   computed: mapState([
     'client',
     'connected',
+    'hit',
     'id',
     'joined',
     'players',
@@ -64,7 +65,7 @@ export default {
 
     this.client.onmessage = e => {
       if (typeof e.data === 'string') {
-        console.log(`Client: received: '${e.data}'`)
+        // console.log(`Client: received: '${e.data}'`)
 
         const { event, data } = JSON.parse(e.data)
         console.log(event)
@@ -99,7 +100,7 @@ export default {
     inaction (e) {
       const { code } = e
 
-      // OPTMIZE
+      // OPTMIZE: with `includes`
       if (code === 'ArrowLeft' ||
           code === 'ArrowRight' ||
           code === 'Space') {
@@ -136,12 +137,27 @@ body {
 }
 
 h1 {
+  color: #fff;
   font: {
     family: 'DeadFontWalking', arial;
     size: 4.6em;
     weight: normal;
   }
   text-align: center;
+
+  &.hit {
+    animation: color-change .3s;
+  }
+}
+
+@keyframes color-change {
+  0% {
+    color: #fff;
+  }
+
+  100% {
+    color: red;
+  }
 }
 
 .controls {

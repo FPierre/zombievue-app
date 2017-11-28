@@ -85,5 +85,17 @@ export default {
     if (getters.ready) {
       commit('UNDEADS', { undeads })
     }
+  },
+
+  hitbox: ({ commit, state }, { playerId, undeadId }) => {
+    const player = state.players.find(p => p.id === playerId)
+    const undead = state.undeads.find(u => u.id === undeadId)
+
+    if (player && undead) {
+      // Hero is hit
+      if (playerId === state.id) {
+        commit('HIT')
+      }
+    }
   }
 }
